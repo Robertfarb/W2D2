@@ -5,11 +5,11 @@ class Piece
   end
   
   def letter
-    "P"
+    "♖"
   end
   
   def inspect
-    "P"  
+    "♖"  
   end
   
 end

@@ -1,8 +1,11 @@
 require_relative "board"
+require_relative "game"
 require "colorize"
 require_relative "cursor"
+require "byebug"
 
 class Display
+  attr_reader :cursor
   
   def initialize(board)
     @board = board
@@ -11,14 +14,19 @@ class Display
   
   def render
     x,y = @cursor.cursor_pos
-    @board.grid.each do |row|
-      row.each do |piece|
-        if [row, piece] == [x, y]
-          print piece.letter.colorize(:blue)
+    print "  -----------------------------------------" + "\n"
+    @board.grid.each_with_index do |row, rid|
+      row.each_with_index do |piece, pid|
+        if [rid, pid] == [x, y]
+          print  "  | " +  piece.letter.colorize(:white)
         else
-          print piece.letter
+          print  "  | "  + piece.letter
         end
+        
       end
+      
+      print "  | \n"
+      print "  -----------------------------------------"
       print "\n"
     end
   end

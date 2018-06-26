@@ -1,6 +1,7 @@
 require_relative "piece"
 require_relative "display"
 require "byebug"
+
 class Board
   attr_reader :grid
   def initialize 
@@ -28,7 +29,7 @@ class Board
   end
   
   def valid_pos?(pos)
-    pos.all? {|num| num.between?(0, 8)}  
+    pos.all? {|num| num.between?(0, 7)}  
   end
   
   private
@@ -48,7 +49,7 @@ end
 if $PROGRAM_NAME == __FILE__
   brd = Board.new
   brd.populate_board
-  brd.move_piece([0,0],[3,0])
+  # brd.move_piece([0,0],[3,0])
   brd.display_board
   display = Display.new(brd)
   display.render
