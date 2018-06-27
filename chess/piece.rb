@@ -15,12 +15,9 @@ class Piece
     
   end
   
-  def letter
-    "♖"
-  end
   
   def inspect
-    "♖"  
+    "#{self.class}"
   end
   
 end
@@ -49,6 +46,7 @@ class Bishop < Piece
   include SlidingPiece
   
   def moves_diffs
+    # debugger
     diagonal_dirs(@pos, @board)
   end
   
@@ -137,6 +135,11 @@ class Pawn < Piece
   def moves
     
   end
+  
+  def letter
+    "♙"
+  end
+  
 end
 
 if $PROGRAM_NAME == __FILE__

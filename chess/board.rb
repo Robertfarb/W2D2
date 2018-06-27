@@ -12,15 +12,27 @@ class Board
   end
   
   def populate_board
-    # [0,1,-1,-2].each do |row|
-    #   @grid[row].map! { |pos| pos = Piece.new }
-    # end
-    game_board = Board.new
-    self[[0, 3]] = King.new(:blue, self, [0, 3])
-    self[[0, 1]] = Knight.new(:blue, self, [0, 1])
-    self[[0, 2]] = Bishop.new(:blue, self, [0, 2])
-    self[[0, 0]] = Rook.new(:blue, self, [0, 0])
-    self[[0, 4]] = Queen.new(:blue, self, [0, 4])
+    [0,1,-1,-2].each do |row|
+      
+      color = :black if row == 0 || row == 1
+      color = :white if row == -1 || row == -2 
+      
+      if row == 0 || row == -1
+        
+        self[[row, 0]] = Rook.new(color, self, [row, 0])
+        self[[row, 1]] = Knight.new(color, self, [row, 1])
+        self[[row, 2]] = Bishop.new(color, self, [row, 2])
+        self[[row, 3]] = King.new(color, self, [row, 3])
+        self[[row, 4]] = Queen.new(color, self, [row, 4])
+        self[[row, 5]] = Bishop.new(color, self, [row, 5])
+        self[[row, 6]] = Knight.new(color, self, [row, 6])
+        self[[row, 7]] = Rook.new(color, self, [row, 7])
+        # debugger
+      else
+        @grid[row].map! { |pos| pos = Pawn.new(color, self, [row, pos]) }
+      end
+    end
+    
     # debugger
     
   end
@@ -46,6 +58,9 @@ class Board
     pos.all? {|num| num.between?(0, 7)}  
   end
   
+  def in_check?(color)
+    
+  end
   
   def [] (pos)
     x,y = pos
