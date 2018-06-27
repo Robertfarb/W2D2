@@ -1,6 +1,7 @@
 require_relative "board"
 require_relative "cursor"
 require_relative "display"
+require_relative "piece"
 require  'byebug'
 
 class Game
@@ -15,10 +16,23 @@ class Game
   
   def play
     loop do
-      display.render
-      display.cursor.get_input
       system("clear")
+      cursor = display.cursor
+      display.render
+      cursor.get_input
+      p ""
+      if cursor.selected
+        # debugger
+        board.move_piece(cursor.cursor_pos, user_input)
+      end
+      
     end
+  end
+  
+  def user_input
+    puts "Please enter a move:"
+    pos = gets.chomp
+    pos.split(",").map!(&:to_i)
   end
   
 end

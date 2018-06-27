@@ -1,5 +1,6 @@
 require_relative "board"
 require_relative "game"
+require_relative "piece"
 require "colorize"
 require_relative "cursor"
 require "byebug"
@@ -29,5 +30,6 @@ class Display
       print "  -----------------------------------------"
       print "\n"
     end
+      print "  " + @board[[x, y]].moves_diffs.to_s
   end
 end
