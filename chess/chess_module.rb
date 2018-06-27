@@ -73,7 +73,7 @@ module SteppingPiece
     end
     
     possible_moves.select! do |moves| 
-      board.valid_pos?(moves)
+      board.valid_pos?(moves) && board[moves].is_a?(NullPiece)
     end
     
     return possible_moves

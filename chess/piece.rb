@@ -64,6 +64,10 @@ class Rook < Piece
   def moves_diffs
     horizontal_dirs(@position, @board)
   end
+  
+  def letter
+    "♖"
+  end
 end
 
 class Queen < Piece
